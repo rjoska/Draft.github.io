@@ -1,0 +1,1 @@
+My goal for this project is to make a basic website using the Django Framework with the intent of tracking the meta comps, team roster changes, winners, and players competing in the main weekly Deadlock Night shift matches. I am not affiliated with Deadlock Night Shift. I am doing this because I want the experience and I would like to track this data myself.  
