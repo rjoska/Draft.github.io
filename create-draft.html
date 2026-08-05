@@ -1,11 +1,131 @@
-<h1>This is where users will create the specifics of the draft</h1>
+<!DOCTYPE html>
+<html>
+        
+    <head>
+        <title>Create Draft</title>
+    </head>
 
-<p>Here you can choose to make it a snake draft or traditional</p>
-<p>Define the Categories</p>
-<p>Impose a point limit if points are being used</p>
-<p>Impose other restrictions such as roster size</p>
-<p>Need to players of a given type and ect.</p>
+    <body>
 
-<a href="index.html">Index</a>
-<a href="draft-board.html">Draft Board</a>
-<a href="team-view.html">Teams</a>
+        <h1>This is where users will create the specifics of the draft</h1>
+
+        <p>Here you can choose to make it a snake draft or traditional</p>
+        <p>Define the Categories</p>
+        <p>Impose a point limit if points are being used</p>
+        <p>Impose other restrictions such as roster size</p>
+        <p>Need to players of a given type and ect.</p>
+
+        <form id="draftSetupForm">
+            <h2>Required Information</h2>
+            <div id="user_input">
+                <div class="name-container">
+                    <input type="text" name="draftName" placeholder="e.g. Sunday League Draft">
+                </div>
+                <div class="num-player-container">
+                    <input type="number" name="numPlayers" placeholder="12" min="1" max="100">
+                </div>
+            </div>
+            <br>
+            <h2>Draft Type Selection</h2>
+            <div id="select_draft_type">
+                <div class="draft-type-container">
+                    <label><input type="radio" name="draftType" value="Standard" checked> Standard</label>
+                    <label><input type="radio" name="draftType" value="Snake"> Snake</label>
+                </div>
+            </div>
+            <br>
+            <h2>Salary Cap</h2>
+            <div id="select_salary_cap">
+                <div class="draft-cap-container">
+                    <label><input type="radio" name="salaryCap" value="Yes"> Yes</label>
+                    <label><input type="radio" name="salaryCap" value="No" checked> No</label>
+                </div>
+                <div class="cap-amount-container">
+                    <input type="number" name="salaryCapAmount" placeholder="200" min="1" max="999999">
+                </div>
+            </div>
+
+            <br>
+            <h2>Draftable Player Information</h2>
+            <div id="checkboxGroup">
+                <div class="option-container">
+                    <label><input type="checkbox" name="options" value="Position"> Position</label>
+                </div>
+                <div class="option-container">
+                    <label><input type="checkbox" name="options" value="Team"> Team</label>
+                </div>
+                <div class="option-container">
+                    <label><input type="checkbox" name="options" value="Cost"> Cost</label>
+                </div>
+                <div class="option-container">
+                    <label><input type="checkbox" name="options" value="Rating"> Rating</label>
+                </div>
+                <div class="option-container">
+                    <label><input type="checkbox" name="options" value="Age"> Age</label>
+                </div>
+            </div>
+
+            <button type="submit">Save & Go to Draft Board</button>
+
+        </form>
+        
+        <br>
+
+        <!-- User interface to add custom options -->
+        <div>
+            <input type="text" id="newOptionText" placeholder="Enter new option...">
+            <button type="button" onclick="addNewCheckbox()">Add Option</button>
+        </div>
+
+        <script>
+            function addNewCheckbox() {
+                // 1. Get the value typed by the user
+                const inputField = document.getElementById("newOptionText");
+                const textValue = inputField.value.trim();
+
+                // 2. Validate that the input is not empty
+                if (textValue === "") {
+                    alert("Please enter a name for the option.");
+                    return;
+                }
+
+                // 3. Target the container element
+                const group = document.getElementById("checkboxGroup");
+
+                // 4. Create the wrapper div
+                const wrapper = document.createElement("div");
+                wrapper.className = "option-container";
+
+                // 5. Create the label element
+                const label = document.createElement("label");
+
+                // 6. Create the checkbox input element
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "options";
+                    
+                // Format value safely (lowercase, alphanumeric)
+                checkbox.value = textValue.toLowerCase().replace(/[^a-z0-9]/g, ""); 
+
+                // 7. Assemble the components together
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(" " + textValue));
+                wrapper.appendChild(label);
+                    
+                // 8. Inject the final element into the page
+                group.appendChild(wrapper);
+
+                // 9. Clear the input field for the next entry
+                inputField.value = "";
+            }
+        </script>
+
+
+
+        <a href="index.html">Index</a>
+        <a href="draft-board.html">Draft Board</a>
+        <a href="team-view.html">Teams</a>
+
+
+    </body>
+</html>
